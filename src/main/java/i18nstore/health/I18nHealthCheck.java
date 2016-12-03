@@ -1,4 +1,4 @@
-package i18nstore;
+package i18nstore.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

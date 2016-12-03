@@ -1,4 +1,4 @@
-package i18nstore.resource;
+package i18nstore.resources;
 
 import java.util.Locale;
 import java.util.Set;
