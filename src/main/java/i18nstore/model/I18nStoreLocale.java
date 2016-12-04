@@ -1,22 +1,16 @@
 package i18nstore.model;
 
 import java.io.Serializable;
-import java.net.URI;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.glassfish.jersey.linking.InjectLink;
-
-import i18nstore.resources.I18nStoreLocaleResource;
 
 public class I18nStoreLocale implements Serializable {
     private static final long serialVersionUID = 1L;
     private I18nStoreCountry country;
     private I18nStoreLanguage language;
-    @InjectLink(resource=I18nStoreLocaleResource.class)
-    private URI self;
 
     public I18nStoreLocale() { }
 
@@ -33,9 +27,6 @@ public class I18nStoreLocale implements Serializable {
         return language;
     }
 
-    public URI getSelf() {
-        return self;
-    }
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
