@@ -1,41 +1,45 @@
 package i18nstore.model;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import i18nstore.util.ObjectsUtil;
 
 public class Message {
     private String key;
-    private String value;
+    private Set<MessageValue> values;
 
     public Message() { }
 
-    public Message(String key, String value) {
+    public Message(String key, Set<MessageValue> values) {
         this.key = key;
-        this.value = value;
+        this.values = values;
     }
 
     public String getKey() {
         return key;
     }
 
-    public String getValue() {
-        return value;
+    public Set<MessageValue> getValues() {
+        return values;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return ObjectsUtil.isEqual(this, obj, (a, b) -> Objects.equals(a.getKey(), b.getKey()));
+        return ObjectsUtil.isEqual(this, obj, (a, b) ->
+                Objects.equals(a.getKey(), b.getKey())
+                && Objects.equals(a.getValues(), b.getValues()));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getKey(), getValue());
+        return Objects.hash(getKey(), getValues());
     }
 
     @Override
     public String toString() {
-        return ObjectsUtil.toJSonString(this, this::getKey, this::getValue);
+        return ObjectsUtil.toJSonString(this, this::getKey, this::getValues);
     }
 
 }
