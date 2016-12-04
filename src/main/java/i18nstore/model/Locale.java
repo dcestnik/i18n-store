@@ -7,23 +7,23 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class I18nStoreLocale implements Serializable {
+public class Locale implements Serializable {
     private static final long serialVersionUID = 1L;
-    private I18nStoreCountry country;
-    private I18nStoreLanguage language;
+    private Country country;
+    private Language language;
 
-    public I18nStoreLocale() { }
+    public Locale() { }
 
-    public I18nStoreLocale(I18nStoreCountry country, I18nStoreLanguage language) {
+    public Locale(Country country, Language language) {
         this.country = country;
         this.language = language;
     }
 
-    public I18nStoreCountry getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public I18nStoreLanguage getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
@@ -49,7 +49,7 @@ public class I18nStoreLocale implements Serializable {
             return false;
         }
 
-        I18nStoreLocale other = (I18nStoreLocale) obj;
+        Locale other = (Locale) obj;
 
         return new EqualsBuilder()
                 .append(getCountry(), other.getCountry())
