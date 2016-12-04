@@ -16,7 +16,7 @@ import i18nstore.model.I18nStoreLocale;
 
 @Path("/locales")
 @Produces(MediaType.APPLICATION_JSON)
-public class I18nStoreLocaleResource {
+public class LocaleResource {
     static Set<I18nStoreLocale> locales = Stream.of(Locale.getAvailableLocales())
             .map(l -> new I18nStoreLocale(
                     new I18nStoreCountry(l.getCountry(), l.getDisplayCountry(), l.getCountry(), l.getCountry()),

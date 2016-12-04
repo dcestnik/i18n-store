@@ -13,11 +13,11 @@ import i18nstore.model.I18nStoreLocale;
 
 @Path("/countries")
 @Produces(MediaType.APPLICATION_JSON)
-public class I18nStoreCountryResource {
+public class CountryResource {
 
     @GET
     public Set<I18nStoreCountry> getCountries() {
-        return I18nStoreLocaleResource.locales
+        return LocaleResource.locales
                 .stream()
                 .map(I18nStoreLocale::getCountry)
                 .distinct()
