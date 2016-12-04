@@ -9,14 +9,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Locale implements Serializable {
     private static final long serialVersionUID = 1L;
+    private String code;
     private Country country;
     private Language language;
 
     public Locale() { }
 
-    public Locale(Country country, Language language) {
+    public Locale(String code, Country country, Language language) {
+        this.code = code;
         this.country = country;
         this.language = language;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public Country getCountry() {
@@ -30,6 +36,7 @@ public class Locale implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
+                .append(getCode())
                 .append(getCountry())
                 .append(getLanguage())
                 .toHashCode();
@@ -52,6 +59,7 @@ public class Locale implements Serializable {
         Locale other = (Locale) obj;
 
         return new EqualsBuilder()
+                .append(getCode(), other.getCode())
                 .append(getCountry(), other.getCountry())
                 .append(getLanguage(), other.getLanguage())
                 .isEquals();
@@ -60,6 +68,7 @@ public class Locale implements Serializable {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append(getCode())
                 .append(getCountry())
                 .append(getLanguage())
                 .build();

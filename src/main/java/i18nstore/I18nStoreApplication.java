@@ -23,8 +23,7 @@ public class I18nStoreApplication extends Application<I18nStoreConfiguration>{
 
     @Override
     public void run(I18nStoreConfiguration dc, Environment env) throws Exception {
-        env.healthChecks()
-                .register("started", new I18nHealthCheck());
+        env.healthChecks().register("started", new I18nHealthCheck());
         env.jersey()
                 .getResourceConfig()
                 .packages("i18nstore")
