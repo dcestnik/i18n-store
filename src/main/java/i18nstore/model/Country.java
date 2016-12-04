@@ -1,11 +1,9 @@
 package i18nstore.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import i18nstore.util.ObjectsUtil;;
 
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -41,44 +39,20 @@ public class Country implements Serializable {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder()
-                .append(getCode())
-                .append(getName())
-                .append(getAlpha2Code())
-                .append(getAlpha3Code())
-                .toHashCode();
+        return Objects.hash(getCode(), getName(), getAlpha2Code(), getAlpha3Code());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        Country other = (Country) obj;
-        return new EqualsBuilder()
-                .append(getCode(), other.getCode())
-                .append(getName(), other.getName())
-                .append(getAlpha2Code(), other.getAlpha2Code())
-                .append(getAlpha3Code(), other.getAlpha3Code())
-                .isEquals();
+        return ObjectsUtil.isEqual(this, obj, (a, b) ->
+                Objects.equals(a.getCode(), b.getCode())
+                        && Objects.equals(a.getName(), b.getName())
+                        && Objects.equals(a.getAlpha2Code(), b.getAlpha2Code())
+                        && Objects.equals(a.getAlpha3Code(), b.getAlpha3Code()));
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append(getCode())
-                .append(getName())
-                .append(getAlpha2Code())
-                .append(getAlpha3Code())
-                .build();
+        return ObjectsUtil.toJSonString( this, this::getCode, this::getAlpha2Code, this::getAlpha3Code, this::getName);
     }
 }

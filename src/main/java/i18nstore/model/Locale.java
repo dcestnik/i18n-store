@@ -1,11 +1,9 @@
 package i18nstore.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import i18nstore.util.ObjectsUtil;
 
 public class Locale implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -35,42 +33,19 @@ public class Locale implements Serializable {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder()
-                .append(getCode())
-                .append(getCountry())
-                .append(getLanguage())
-                .toHashCode();
+        return Objects.hash(getCode(), getCountry(), getLanguage());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        Locale other = (Locale) obj;
-
-        return new EqualsBuilder()
-                .append(getCode(), other.getCode())
-                .append(getCountry(), other.getCountry())
-                .append(getLanguage(), other.getLanguage())
-                .isEquals();
+        return ObjectsUtil.isEqual(this, obj, (a, b) ->
+                Objects.equals(a.getCode(), b.getCode())
+                        && Objects.equals(a.getCountry(), b.getCountry())
+                        && Objects.equals(a.getLanguage(), b.getLanguage()));
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append(getCode())
-                .append(getCountry())
-                .append(getLanguage())
-                .build();
+        return ObjectsUtil.toJSonString(this, this::getCode, this::getCountry, this::getLanguage);
     }
 }
