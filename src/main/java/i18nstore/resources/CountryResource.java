@@ -19,14 +19,12 @@ import i18nstore.model.Locale;
 public class CountryResource {
     @GET
     public Set<Country> getCountries(
-            @MatrixParam("code") Optional<String> code,
             @MatrixParam("alpha2Code") Optional<String> alpha2Code,
             @MatrixParam("alpha3Code") Optional<String> alpha3Code,
             @MatrixParam("name") Optional<String> name) {
         return LocaleResource.locales
                 .stream()
                 .map(Locale::getCountry)
-                .filter(c -> !code.isPresent() || c.getCode().equals(code.get()))
                 .filter(c -> !alpha2Code.isPresent() || c.getAlpha2Code().equals(alpha2Code.get()))
                 .filter(c -> !alpha3Code.isPresent() || c.getAlpha3Code().equals(alpha3Code.get()))
                 .filter(c -> !name.isPresent() || c.getName().equals(name.get()))
@@ -35,12 +33,12 @@ public class CountryResource {
     }
 
     @GET
-    @Path("{code}")
-    public Country getCountry(@PathParam("code") String code) {
+    @Path("{alpha2Code}")
+    public Country getCountry(@PathParam("alpha2Code") String alpha2Code) {
         return LocaleResource.locales
                 .stream()
                 .map(Locale::getCountry)
-                .filter(l -> l.getCode().equals(code))
+                .filter(l -> l.getAlpha2Code().equals(alpha2Code))
                 .findFirst()
                 .orElse(null);
     }

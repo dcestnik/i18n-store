@@ -1,6 +1,7 @@
 package i18nstore;
 
 
+import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
 import org.glassfish.jersey.message.filtering.SelectableEntityFilteringFeature;
 
 import i18nstore.health.I18nHealthCheck;
@@ -28,6 +29,7 @@ public class I18nStoreApplication extends Application<I18nStoreConfiguration>{
                 .getResourceConfig()
                 .packages("i18nstore")
                 .register(SelectableEntityFilteringFeature.class)
+                .register(DeclarativeLinkingFeature.class)
                 .property(SelectableEntityFilteringFeature.QUERY_PARAM_NAME, "select");
     }
 }

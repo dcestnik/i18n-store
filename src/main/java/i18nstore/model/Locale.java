@@ -1,8 +1,13 @@
 package i18nstore.model;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.Objects;
 
+import org.glassfish.jersey.linking.InjectLink;
+import org.glassfish.jersey.linking.InjectLink.Style;
+
+import i18nstore.resources.LocaleResource;
 import i18nstore.util.ObjectsUtil;
 
 public class Locale implements Serializable {
@@ -10,6 +15,8 @@ public class Locale implements Serializable {
     private String code;
     private Country country;
     private Language language;
+    @InjectLink(resource = LocaleResource.class, style = Style.ABSOLUTE, method = "getLocale")
+    private URI self;
 
     public Locale() { }
 
@@ -29,6 +36,10 @@ public class Locale implements Serializable {
 
     public Language getLanguage() {
         return language;
+    }
+
+    public URI getSelf() {
+        return self;
     }
 
     @Override

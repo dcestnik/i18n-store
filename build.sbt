@@ -9,6 +9,7 @@ resolvers += Resolver.mavenLocal
 libraryDependencies ++= Seq(
   "io.dropwizard" % "dropwizard-core" % "1.0.5",
   "org.glassfish.jersey.ext" % "jersey-entity-filtering" % "2.23.2",
+  "org.glassfish.jersey.ext" % "jersey-declarative-linking" % "2.23.2",
   "org.glassfish.jersey.media" % "jersey-media-json-jackson" % "2.23.2" // runtime
 )
 

@@ -20,12 +20,12 @@ public class LocaleResource {
     static Set<Locale> locales = Stream.of(java.util.Locale.getAvailableLocales())
             .map(l -> new Locale(
                     l.toString(),
-                    new Country(l.getCountry(), l.getDisplayCountry(), l.getCountry(), l.getCountry()),
+                    new Country( l.getDisplayCountry(), l.getCountry(), l.getCountry()),
                     new Language(l.getLanguage(), l.getDisplayLanguage())))
             .collect(Collectors.toSet());
 
     @GET
-    public Set<Locale> getLocale() {
+    public Set<Locale> getLocales() {
         return locales;
     }
 
@@ -43,7 +43,8 @@ public class LocaleResource {
         return locales.stream()
                 .filter(l -> l.getCode().equals(code))
                 .map(Locale::getCountry)
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 
     @GET
@@ -52,6 +53,7 @@ public class LocaleResource {
         return locales.stream()
                 .filter(l -> l.getCode().equals(code))
                 .map(Locale::getLanguage)
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 }
